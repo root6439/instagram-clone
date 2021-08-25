@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,13 +13,27 @@ export class LoginComponent implements OnInit {
   @Output()
   public exibirPainel: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  public formulario: FormGroup = new FormGroup({
+    'email': new FormControl(null, [Validators.required, Validators.email]),
+    'senha': new FormControl(null, [Validators.required])
+  })
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   public exibirPainelCadastro(): void {
     this.exibirPainel.emit('cadastro');
+  }
+
+  public login(): void {
+    this.authService.login(
+      this.formulario.value.email,
+      this.formulario.value.senha
+    );
   }
 
 }

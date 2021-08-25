@@ -1,3 +1,6 @@
+import { AuthGuardService } from './auth-guard.service';
+import { ROUTES } from './app.routes';
+import { AuthService } from './auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +11,9 @@ import { AcessoComponent } from './acesso/acesso.component';
 import { BannerComponent } from './acesso/banner/banner.component';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
+import { HomeComponent } from './home/home.component';
+import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,14 +21,17 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
     AcessoComponent,
     BannerComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    HomeComponent,
+    PublicacoesComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [ AuthService, AuthGuardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
