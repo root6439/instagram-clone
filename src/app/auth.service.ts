@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  public erroLogin: string;
+
   public token_id: string;
 
   constructor(
@@ -21,7 +23,7 @@ export class AuthService {
           .set(usuario);
       })
       .catch((err: any) => {
-        console.log(err);
+        this.erroLogin = err.message;
       })
   }
 

@@ -1,3 +1,4 @@
+import { BdService } from './bd-service.service';
 import { AuthGuardService } from './auth-guard.service';
 import { ROUTES } from './app.routes';
 import { AuthService } from './auth.service';
@@ -14,6 +15,7 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { RouterModule } from '@angular/router';
+import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    IncluirPublicacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ AuthService, AuthGuardService ],
+  providers: [ AuthService, AuthGuardService, BdService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

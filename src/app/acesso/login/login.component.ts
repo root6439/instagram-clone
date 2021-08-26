@@ -10,6 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  public erroLogin: boolean;
+
   @Output()
   public exibirPainel: EventEmitter<string> = new EventEmitter<string>();
 
@@ -34,6 +36,11 @@ export class LoginComponent implements OnInit {
       this.formulario.value.email,
       this.formulario.value.senha
     );
+  }
+
+  public verificaErroLogin(): string {
+    this.erroLogin = true;
+    return this.authService.erroLogin;
   }
 
 }
