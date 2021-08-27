@@ -58,7 +58,6 @@ export class AcessoComponent implements OnInit {
   }
 
   public inicioDaAnimacao(): void {
-    console.log('opa');
     
   }
 

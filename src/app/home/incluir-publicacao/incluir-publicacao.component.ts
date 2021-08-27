@@ -51,7 +51,6 @@ export class IncluirPublicacaoComponent implements OnInit {
     continua.next(true)
     limitador.subscribe(() => {
       this.porcentagemUpload = Math.round((this.progressoService.estado.bytesTransferred / this.progressoService.estado.totalBytes) * 100)
-      console.log(this.progressoService);
       this.progressoPublicacao = 'andamento';
       if (this.progressoService.status == 'concluido') {
         continua.next(false);
