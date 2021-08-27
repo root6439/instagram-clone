@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import firebase from 'firebase';
+import { APP_INITIALIZER, Component, OnInit } from '@angular/core';
+import firebase from 'firebase/app';
+import "firebase/analytics";
 
 @Component({
   selector: 'app-root',

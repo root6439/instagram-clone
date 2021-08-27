@@ -1,10 +1,11 @@
 import { ProgressoService } from './../../progresso.service';
 import { BdService } from './../../bd-service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import firebase from 'firebase';
-import { interval, Observable, Subject } from 'rxjs';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import firebase from 'firebase/app';
+import { interval, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import "firebase/database";
 
 @Component({
   selector: 'app-incluir-publicacao',
@@ -12,6 +13,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./incluir-publicacao.component.css']
 })
 export class IncluirPublicacaoComponent implements OnInit {
+
+  @Output()
+  public atualizarTimeLine: EventEmitter<any> = new EventEmitter<any>();
 
   private email: string;
   private imagem: any;
@@ -52,6 +56,7 @@ export class IncluirPublicacaoComponent implements OnInit {
       if (this.progressoService.status == 'concluido') {
         continua.next(false);
         this.progressoPublicacao = 'concluido';
+        this.atualizarTimeLine.emit();
       }
     })
 

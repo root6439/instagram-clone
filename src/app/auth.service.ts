@@ -1,7 +1,8 @@
 import { Usuario } from './acesso/usuario.model';
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import "firebase/auth";
 
 @Injectable({
   providedIn: 'root'

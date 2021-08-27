@@ -1,6 +1,7 @@
 import { BdService } from './../../bd-service.service';
 import { Component, OnInit } from '@angular/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import "firebase/storage";
 
 @Component({
   selector: 'app-publicacoes',
@@ -10,6 +11,8 @@ import firebase from 'firebase';
 export class PublicacoesComponent implements OnInit {
 
   private email: string;
+
+  public publicacoes: Array<any> = [];
 
   constructor(
     private bd: BdService
@@ -23,7 +26,11 @@ export class PublicacoesComponent implements OnInit {
   }
 
   public atualizarTimeline(): void {
-    this.bd.consultaPublicacoes(this.email);
+    this.bd.consultaPublicacoes(this.email).then((resp: any) => {
+      this.publicacoes = resp;
+      console.log(resp);
+      
+    })
   }
 
 }
