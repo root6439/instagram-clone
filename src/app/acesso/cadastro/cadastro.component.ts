@@ -1,7 +1,7 @@
 import { AuthService } from './../../auth.service';
 import { Usuario } from './../usuario.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,11 +13,11 @@ export class CadastroComponent implements OnInit {
   @Output()
   public exibirPainel: EventEmitter<string> = new EventEmitter<string>();
 
-  public formulario: FormGroup = new FormGroup({
-    'email': new FormControl(null, [Validators.required, Validators.email]),
-    'nomeDeUsuario': new FormControl(null, [Validators.required]),
-    'nomeCompleto': new FormControl(null, [Validators.required]),
-    'senha': new FormControl(null, [Validators.required])
+  public formulario: UntypedFormGroup = new UntypedFormGroup({
+    'email': new UntypedFormControl(null, [Validators.required, Validators.email]),
+    'nomeDeUsuario': new UntypedFormControl(null, [Validators.required]),
+    'nomeCompleto': new UntypedFormControl(null, [Validators.required]),
+    'senha': new UntypedFormControl(null, [Validators.required])
   })
 
   constructor(

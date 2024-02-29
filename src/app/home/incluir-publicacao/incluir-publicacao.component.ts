@@ -1,6 +1,6 @@
 import { ProgressoService } from './../../progresso.service';
 import { BdService } from './../../bd-service.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import firebase from 'firebase/app';
 import { interval, Subject } from 'rxjs';
@@ -22,8 +22,8 @@ export class IncluirPublicacaoComponent implements OnInit {
   public progressoPublicacao: string = 'pendente'
   public porcentagemUpload: number = 0;
 
-  public formulario: FormGroup = new FormGroup({
-    'titulo': new FormControl(null, [Validators.required])
+  public formulario: UntypedFormGroup = new UntypedFormGroup({
+    'titulo': new UntypedFormControl(null, [Validators.required])
   })
 
   constructor(
