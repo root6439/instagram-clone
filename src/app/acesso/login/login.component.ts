@@ -1,31 +1,37 @@
+import { CommonModule } from '@angular/common';
 import { AuthService } from './../../auth.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-
+import {
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class LoginComponent implements OnInit {
-
   public erroLogin: boolean;
 
   @Output()
   public exibirPainel: EventEmitter<string> = new EventEmitter<string>();
 
   public formulario: UntypedFormGroup = new UntypedFormGroup({
-    'email': new UntypedFormControl(null, [Validators.required, Validators.email]),
-    'senha': new UntypedFormControl(null, [Validators.required])
-  })
+    email: new UntypedFormControl(null, [
+      Validators.required,
+      Validators.email,
+    ]),
+    senha: new UntypedFormControl(null, [Validators.required]),
+  });
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public exibirPainelCadastro(): void {
     this.exibirPainel.emit('cadastro');
@@ -42,5 +48,4 @@ export class LoginComponent implements OnInit {
     this.erroLogin = true;
     return this.authService.erroLogin;
   }
-
 }

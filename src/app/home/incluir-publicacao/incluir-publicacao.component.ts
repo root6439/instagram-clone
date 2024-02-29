@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProgressoService } from './../../progresso.service';
 import { BdService } from './../../bd-service.service';
 
@@ -7,12 +7,14 @@ import { interval, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import 'firebase/database';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-incluir-publicacao',
   templateUrl: './incluir-publicacao.component.html',
   styleUrls: ['./incluir-publicacao.component.css'],
   standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class IncluirPublicacaoComponent implements OnInit {
   @Output()
@@ -23,7 +25,9 @@ export class IncluirPublicacaoComponent implements OnInit {
   public progressoPublicacao: string = 'pendente';
   public porcentagemUpload: number = 0;
 
-  titulo = new FormControl('');
+  formulario = new FormGroup({
+    titulo: new FormControl(''),
+  });
 
   constructor(
     private bd: BdService,
@@ -38,7 +42,7 @@ export class IncluirPublicacaoComponent implements OnInit {
 
   public publicar(): void {
     this.bd.incluirPublicacao({
-      titulo: this.titulo.value,
+      titulo: this.formulario.get('titulo').value,
       email: this.email,
       imagem: this.imagem,
     });
